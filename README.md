@@ -5,6 +5,7 @@
  - [ ] Added Chemistry Lessons
  - [ ] Added Physics Applications
  - [x] Added Chemistry Applications
+ - [x] Fixed config file loading
 
   
 ##Version 0.4 - [Download](https://github.com/Zenibryum/Knolth/raw/master/src-0.4.zip)

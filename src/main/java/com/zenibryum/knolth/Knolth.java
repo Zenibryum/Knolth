@@ -2,16 +2,18 @@ package com.zenibryum.knolth;
 
 import com.zenibryum.knolth.gui.GuiHandlerGrinder;
 import com.zenibryum.knolth.gui.GuiHandlerMacerator;
+import com.zenibryum.knolth.gui.manual.GuiManual;
 import com.zenibryum.knolth.init.KnolthBlocks;
 import com.zenibryum.knolth.init.KnolthItems;
 import com.zenibryum.knolth.proxy.CommonProxy;
 import com.zenibryum.knolth.tileentity.TileEntityCentrifuge;
 import com.zenibryum.knolth.tileentity.TileEntityElectricFurnace;
 import com.zenibryum.knolth.tileentity.TileEntityGrinder;
-import com.zenibryum.knolth.tileentity.TileEntityMulti;
 import com.zenibryum.knolth.tileentity.TileEntityVacuum;
 import com.zenibryum.knolth.tileentity.renderer.TileEntityRenderTube;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -32,7 +34,7 @@ public class Knolth {
     
 
     public enum GUI_ENUM {
-    GRINDER, CENTRIFUGE, HEATER, VACUUM, ZIPPE
+    GRINDER, CENTRIFUGE, HEATER, VACUUM, ZIPPE, MANUAL
     }
 
 
@@ -50,7 +52,6 @@ public class Knolth {
     	GameRegistry.registerTileEntity(TileEntityCentrifuge.class, "tileEntityCentrifuge");
     	GameRegistry.registerTileEntity(TileEntityVacuum.class, "tileEntityVacuum");
     	GameRegistry.registerTileEntity(TileEntityElectricFurnace.class, "tileEntityElectricFurnace");
-    	GameRegistry.registerTileEntity(TileEntityMulti.class, "tileEntityMulti");
 
 
     	
@@ -58,11 +59,18 @@ public class Knolth {
     
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        NetworkRegistry.INSTANCE.registerGuiHandler(Reference.MOD_ID, new KnolthGuiHandler()); 
-        NetworkRegistry.INSTANCE.registerGuiHandler(instance,new GuiHandlerGrinder());  
-
-
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new KnolthGuiHandler()); 
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance,new GuiHandlerGrinder());
     	proxy.registerRenders();
+    	GameRegistry.addShapelessRecipe(new ItemStack(KnolthItems.UO2), Items.water_bucket, KnolthItems.crushedUranium);
+    	GameRegistry.addShapelessRecipe(new ItemStack(KnolthItems.yellowcake), KnolthItems.UO2, KnolthItems.H2SO4);
+    	GameRegistry.addShapelessRecipe(new ItemStack(KnolthItems.AmmoniumDiuranate), KnolthItems.yellowcake, KnolthItems.NH3);
+    	GameRegistry.addShapelessRecipe(new ItemStack(KnolthItems.UF4), KnolthItems.UO2, KnolthItems.HF);
+    	GameRegistry.addShapelessRecipe(new ItemStack(KnolthItems.U), KnolthItems.UF4, KnolthItems.Mg);
+    	
+    	Configs.init();
+    	GuiManual.init();
+    	
     }
     
     @Mod.EventHandler

@@ -17,7 +17,7 @@ public class BlockTerminal extends BlockNormal{
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (!worldIn.isRemote) playerIn.openGui(Knolth.instance, KnolthGuiHandler.KNOLTH_TILE_ENTITY_GUI, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		if (!worldIn.isRemote) playerIn.openGui(Knolth.instance, 1, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
 }

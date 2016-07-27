@@ -3,10 +3,10 @@ package com.zenibryum.knolth.gui;
 import com.zenibryum.knolth.tileentity.KnolthTileEntity;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.InventoryPlayer;
 
 public class GuiKnolthTileEntity extends GuiContainer {
-    public GuiKnolthTileEntity(IInventory playerInv, KnolthTileEntity te) {
+    public GuiKnolthTileEntity(InventoryPlayer playerInv, KnolthTileEntity te) {
         super(new ContainerKnolthTileEntity(playerInv, te));
         this.xSize = 176;
         this.ySize = 166;

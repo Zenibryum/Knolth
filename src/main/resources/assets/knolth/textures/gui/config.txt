@@ -1,0 +1,18 @@
+1
+1
+1
+1
+LECTIE FIZ
+APLICATIE1 FIZ
+DESPRE ATOMI
+PROCESAREA URAN
+
+-Lectii Fizica
+-Aplcatii Fizica
+-Lectii Chimie
+-Aplicatii Chimie
+p - physics
+c - chemistry
+a - lessons
+b - applications
+ex: pa1 - physics lesson 1

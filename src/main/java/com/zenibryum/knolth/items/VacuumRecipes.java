@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.google.common.collect.Maps;
+import com.zenibryum.knolth.init.KnolthItems;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -28,6 +29,8 @@ public class VacuumRecipes
         addGrindingRecipe(new ItemStack(Item.getItemFromBlock(Blocks.stone_slab)), new ItemStack(Item.getItemFromBlock(Blocks.gravel)), 0.7F);
         addGrindingRecipe(new ItemStack(Item.getItemFromBlock(Blocks.stone_slab2)), new ItemStack(Item.getItemFromBlock(Blocks.gravel)), 0.7F);
         addGrindingRecipe(new ItemStack(Item.getItemFromBlock(Blocks.stone_stairs)), new ItemStack(Item.getItemFromBlock(Blocks.gravel)), 0.7F);
+        addGrindingRecipe(new ItemStack(KnolthItems.U), new ItemStack(KnolthItems.U235), 0.7F);
+        
     }
 
     public void addGrindingRecipe(ItemStack parItemStackIn, ItemStack parItemStackOut, float parExperience)

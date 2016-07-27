@@ -9,7 +9,6 @@ import com.zenibryum.knolth.blocks.BlockCentrifuge;
 import com.zenibryum.knolth.blocks.BlockElectricFurnace;
 import com.zenibryum.knolth.blocks.BlockGrinder;
 import com.zenibryum.knolth.blocks.BlockKnolthOre;
-import com.zenibryum.knolth.blocks.BlockMulti;
 import com.zenibryum.knolth.blocks.BlockNormal;
 import com.zenibryum.knolth.blocks.BlockOrientable;
 import com.zenibryum.knolth.blocks.BlockTerminal;
@@ -30,9 +29,10 @@ public class KnolthBlocks {
     private static List<Block> knolthBlocks = new ArrayList<Block>();
    
     private static String[] blockNames = {"workspace_part", "workspace_corner"};
-    private static String[] oreNames = { "uranium_ore", "copper_ore", "zinc_ore", "alluminium_ore", "platinum_ore" };
+    private static String[] oreNames = { "copper_ore", "zinc_ore", "alluminium_ore", "platinum_ore" };
     //workspace_side
    
+    public static Block uraniumOre = new BlockKnolthOre().setUnlocalizedName("uranium_ore").setCreativeTab(Knolth.tabKnolth);
     public static Block terminal = new BlockTerminal(Material.anvil).setUnlocalizedName("terminal").setCreativeTab(Knolth.tabKnolth);
     //public static Block macerator = new BlockMacerator(false).setUnlocalizedName("macerator").setCreativeTab(Knolth.tabKnolth);
     //public static Block lit_macerator = new BlockMacerator(true).setUnlocalizedName("lit_macerator").setCreativeTab(Knolth.tabKnolth);
@@ -45,7 +45,6 @@ public class KnolthBlocks {
     public static Block tube = new BlockTube().setUnlocalizedName("tube").setCreativeTab(Knolth.tabKnolth);
     public static Block grinder = new BlockGrinder().setUnlocalizedName("macerator").setCreativeTab(Knolth.tabKnolth);
     public static Block vacuum = new BlockVacuum().setUnlocalizedName("compressor").setCreativeTab(Knolth.tabKnolth);
-    public static Block multi = new BlockMulti(Material.anvil).setUnlocalizedName("multiblock").setCreativeTab(Knolth.tabKnolth);
    
     public static void init() {
         knolthBlocks.add(terminal);
@@ -60,7 +59,7 @@ public class KnolthBlocks {
         knolthBlocks.add(tube);
         knolthBlocks.add(grinder);
         knolthBlocks.add(vacuum);
-        knolthBlocks.add(multi);
+        knolthBlocks.add(uraniumOre);
        
         for (String orename : oreNames) {   //for every Block block in knolthBlocks...
             knolthBlocks.add( new BlockKnolthOre().setUnlocalizedName(orename).setCreativeTab(Knolth.tabKnolth) );

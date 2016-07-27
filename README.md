@@ -8,8 +8,8 @@
  - [x] Fixed config file loading
 
   
-##Version 0.4 - [Download](https://github.com/Zenibryum/Knolth/raw/master/src-0.4.zip)
+##Version 0.4
 - Added manual buttons, pages and automatic loading functionality
 
-##Version 0.3 - [Link](https://github.com/Zenibryum/Knolth/tree/update-0.3)
+##Version 0.3
 - First version to appear on GitHub

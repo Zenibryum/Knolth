@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "knolth:electric_furnace" },
+        "facing=south": { "model": "knolth:electric_furnace", "y": 180 },
+        "facing=west":  { "model": "knolth:electric_furnace", "y": 270 },
+        "facing=east":  { "model": "knolth:electric_furnace", "y": 90 }
+    }
+}

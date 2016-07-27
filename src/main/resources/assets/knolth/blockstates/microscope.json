@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "knolth:microscope" },
+        "facing=south": { "model": "knolth:microscope", "y": 180 },
+        "facing=west":  { "model": "knolth:microscope", "y": 270 },
+        "facing=east":  { "model": "knolth:microscope", "y": 90 }
+    }
+}

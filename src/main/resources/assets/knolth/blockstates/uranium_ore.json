@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "normal": { "model": "knolth:uranium_ore" }
+    }
+}

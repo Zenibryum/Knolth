@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "knolth:compressor" },
+        "facing=south": { "model": "knolth:compressor", "y": 180 },
+        "facing=west":  { "model": "knolth:compressor", "y": 270 },
+        "facing=east":  { "model": "knolth:compressor", "y": 90 }
+    }
+}

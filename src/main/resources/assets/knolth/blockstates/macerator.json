@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "knolth:macerator" },
+        "facing=south": { "model": "knolth:macerator", "y": 180 },
+        "facing=west":  { "model": "knolth:macerator", "y": 270 },
+        "facing=east":  { "model": "knolth:macerator", "y": 90 }
+    }
+}

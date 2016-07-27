@@ -1,0 +1,36 @@
+{
+    "textures": {
+        "0": "knolth:blocks/workspace_stone_side",
+        "1": "knolth:blocks/workspace_stone_corner",
+        "2": "knolth:blocks/workspace_brick_side",
+        "3": "blocks/brick"
+    },
+    "elements": [
+        {
+            "name": "Cube",
+            "from": [ 0.0, 0.0, 0.0 ],
+            "to": [ 16.0, 12.0, 12.0 ],
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 12.0 ] },
+                "east": { "texture": "#1", "uv": [ 0.0, 0.0, 12.0, 12.0 ] },
+                "south": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 12.0 ] },
+                "west": { "texture": "#1", "uv": [ 0.0, 0.0, 12.0, 12.0 ] },
+                "up": { "texture": "#-1", "uv": [ 0.0, 0.0, 16.0, 12.0 ] },
+                "down": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 12.0 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 0.0, 12.0, 0.0 ],
+            "to": [ 16.0, 16.0, 16.0 ],
+            "faces": {
+                "north": { "texture": "#2", "uv": [ 0.0, 0.0, 16.0, 4.0 ] },
+                "east": { "texture": "#2", "uv": [ 0.0, 0.0, 16.0, 4.0 ] },
+                "south": { "texture": "#2", "uv": [ 0.0, 0.0, 16.0, 4.0 ] },
+                "west": { "texture": "#2", "uv": [ 0.0, 0.0, 16.0, 4.0 ] },
+                "up": { "texture": "#3", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "down": { "texture": "#3", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+            }
+        }
+    ]
+}

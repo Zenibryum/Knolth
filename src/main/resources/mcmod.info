@@ -1,0 +1,16 @@
+[
+{
+  "modid": "knolth",
+  "name": "Zenibryum's Salt Mod",
+  "description": "This mod is intended to add new ores to Minecraft",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Zenibryum"],
+  "credits": "The Forge and FML guys, for making this possible",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

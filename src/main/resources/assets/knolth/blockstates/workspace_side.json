@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "knolth:workspace_side" },
+        "facing=south": { "model": "knolth:workspace_side", "y": 180 },
+        "facing=west":  { "model": "knolth:workspace_side", "y": 270 },
+        "facing=east":  { "model": "knolth:workspace_side", "y": 90 }
+    }
+}

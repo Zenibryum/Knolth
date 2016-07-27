@@ -9,6 +9,7 @@ import com.zenibryum.knolth.proxy.CommonProxy;
 import com.zenibryum.knolth.tileentity.TileEntityCentrifuge;
 import com.zenibryum.knolth.tileentity.TileEntityElectricFurnace;
 import com.zenibryum.knolth.tileentity.TileEntityGrinder;
+import com.zenibryum.knolth.tileentity.TileEntityMulti;
 import com.zenibryum.knolth.tileentity.TileEntityVacuum;
 import com.zenibryum.knolth.tileentity.renderer.TileEntityRenderTube;
 
@@ -34,7 +35,7 @@ public class Knolth {
     
 
     public enum GUI_ENUM {
-    GRINDER, CENTRIFUGE, HEATER, VACUUM, ZIPPE, MANUAL
+    GRINDER, CENTRIFUGE, HEATER, VACUUM, ZIPPE, MANUAL, MULTI
     }
 
 
@@ -52,7 +53,7 @@ public class Knolth {
     	GameRegistry.registerTileEntity(TileEntityCentrifuge.class, "tileEntityCentrifuge");
     	GameRegistry.registerTileEntity(TileEntityVacuum.class, "tileEntityVacuum");
     	GameRegistry.registerTileEntity(TileEntityElectricFurnace.class, "tileEntityElectricFurnace");
-
+    	GameRegistry.registerTileEntity(TileEntityMulti.class, "tileEntityMulti");
 
     	
     }

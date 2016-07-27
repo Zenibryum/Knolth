@@ -5,6 +5,7 @@ import com.zenibryum.knolth.gui.manual.GuiManual;
 import com.zenibryum.knolth.tileentity.ContainerCentrifuge;
 import com.zenibryum.knolth.tileentity.ContainerElectricFurnace;
 import com.zenibryum.knolth.tileentity.ContainerGrinder;
+import com.zenibryum.knolth.tileentity.ContainerMulti;
 import com.zenibryum.knolth.tileentity.ContainerVacuum;
 import com.zenibryum.knolth.tileentity.KnolthTileEntity;
 
@@ -44,6 +45,11 @@ public class GuiHandlerGrinder implements IGuiHandler
             if (ID == Knolth.GUI_ENUM.HEATER.ordinal())
             {
                 return new ContainerElectricFurnace(player.inventory, (IInventory)tileEntity);
+            }
+            
+            if (ID == Knolth.GUI_ENUM.MULTI.ordinal())
+            {
+            	return new ContainerMulti(player.inventory, (IInventory)tileEntity);
             }
 
         }
@@ -87,6 +93,11 @@ public class GuiHandlerGrinder implements IGuiHandler
             if (ID == Knolth.GUI_ENUM.HEATER.ordinal())
             {
                 return new GuiElectricFurnace(player.inventory, (IInventory)tileEntity);
+            }
+            
+            if (ID == Knolth.GUI_ENUM.MULTI.ordinal())
+            {
+            	return new GuiMulti(player.inventory, (IInventory)tileEntity);
             }
         }
 

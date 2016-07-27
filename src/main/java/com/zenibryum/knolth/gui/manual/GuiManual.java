@@ -36,6 +36,8 @@ public class GuiManual extends GuiScreen{
 	
 	private static GuiButton home, ph, ch, papps, pless, capps, cless;
 	
+	private static final int yincrement = 15;
+	
 	private static GuiButton[] plb = new GuiButton[100];
 	private static GuiButton[] pab = new GuiButton[100];
 	private static GuiButton[] clb = new GuiButton[100];
@@ -60,16 +62,16 @@ public class GuiManual extends GuiScreen{
 		cao = new ResourceLocation(Reference.MOD_ID, "textures/gui/4.png");
 		
 		//Define buttons used for navigation below
-		home = new GuiButton(1, 353, 62, 60, 13, "Home"); // The home button
+		home = new GuiButton(1, 163, 281, 60, 13, "Home"); // The home button
 		
 		ph = new GuiButton(1, 353, 62, 60, 13, "1. Physics");
 		ch = new GuiButton(1, 353, 98, 70, 13, "2. Chemistry");
 		
-		pless = new GuiButton(1, 353, 134, 50, 13, "Physics Lessons");
-		papps = new GuiButton(1, 353, 147, 110, 13, "Physics Practical Applications");
+		pless = new GuiButton(1, 353, 134, 166, 13, "Physics Lessons");
+		papps = new GuiButton(1, 353, 147, 166, 13, "Physics Practical Applications");
 		
-		cless = new GuiButton(1, 353, 134, 50, 13, "Chemistry Lessons");
-		capps = new GuiButton(1, 353, 147, 110, 13, "Chemistry Practical Applications");
+		cless = new GuiButton(1, 353, 134, 166, 13, "Chemistry Lessons");
+		capps = new GuiButton(1, 353, 147, 166, 13, "Chemistry Practical Applications");
 		
 		//Import lessons and apps below
 		
@@ -113,7 +115,7 @@ public class GuiManual extends GuiScreen{
 		for (int i = 0; i < cln; i++) {
     		clt[i] = (Configs.Config[4+pln+pan+i]) ;
     	}
-		for (int i = 0; i < cln; i++) {
+		for (int i = 0; i < can; i++) {
     		cat[i] = (Configs.Config[4+pln+pan+cln+i]) ;
 		}
 		
@@ -136,31 +138,31 @@ public class GuiManual extends GuiScreen{
 			car[i] = new ResourceLocation(Reference.MOD_ID, "textures/gui/ca" + String.valueOf(i) + ".png");
 		}
 		
-		int yoffset = 0, yincrement = 15;
+		int yoffset = 0;
 		for ( int i = 0; i < pln; i++ )
 		{
-			plb[i] = new GuiButton(1, 353, 76+yoffset, 60, 13, plt[i] );
+			plb[i] = new GuiButton(1, 366, 76+yoffset, 140, 13, plt[i] );
 			yoffset+=yincrement;
 		}
 		
 		yoffset = 0;
 		for ( int i = 0; i < pan; i++ )
 		{
-			pab[i] = new GuiButton(1, 353, 76+yoffset, 60, 13, pat[i] );
+			pab[i] = new GuiButton(1, 366, 76+yoffset, 140, 13, pat[i] );
 			yoffset+=yincrement;
 		}
 		
 		yoffset = 0;
 		for ( int i = 0; i < cln; i++ )
 		{
-			clb[i] = new GuiButton(1, 353, 76+yoffset, 60, 13, clt[i] );
+			clb[i] = new GuiButton(1, 366, 76+yoffset, 140, 13, clt[i] );
 			yoffset+=yincrement;
 		}
 		
 		yoffset = 0;
 		for ( int i = 0; i < can; i++ )
 		{
-			cab[i] = new GuiButton(1, 353, 76+yoffset, 60, 13, cat[i] );
+			cab[i] = new GuiButton(1, 366, 76+yoffset, 140, 13, cat[i] );
 			yoffset+=yincrement;
 		}
 	}
@@ -341,8 +343,6 @@ public class GuiManual extends GuiScreen{
 	public void drawOverlay() {
 		this.mc.getTextureManager().bindTexture(page);
 		this.drawModalRectWithCustomSizedTexture(150, 40, 0, 0, 384, 266, 384, 266); //403, 42
-		this.fontRendererObj.drawString("1. Physics", 353, 62, 0);
-
 	}
 	
 	public void drawOptions() {

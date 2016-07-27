@@ -1,0 +1,11 @@
+{
+    "parent": "block/directional",
+    "textures": {
+        "down": "knolth:blocks/gate_blank",
+	"up": "knolth:blocks/gate_not",
+	"north": "knolth:blocks/gate_out",
+	"south": "knolth:blocks/gate_blank",
+	"west": "knolth:blocks/gate_in",
+	"east": "knolth:blocks/gate_out"
+    }
+}

@@ -2,6 +2,9 @@ package com.zenibryum.knolth.blocks;
 
 import java.util.Random;
 
+import com.zenibryum.knolth.Knolth;
+import com.zenibryum.knolth.init.KnolthBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -10,33 +13,87 @@ import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.Vec3i;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockOrientable extends Block
+public class BlockMultiEdge extends Block
 {
-	public BlockOrientable(Material materialIn) {
-		super(materialIn);
+	public BlockMultiEdge() {
+		super(Material.rock);
+        stepSound = soundTypeSnow;
+        blockParticleGravity = 1.0F;
+        slipperiness = 0.6F;
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        lightOpacity = 20; // cast a light shadow
+        setTickRandomly(false);
+        useNeighborBrightness = false;
 	}
 	
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
     {
-        this.setDefaultFacing(worldIn, pos, state);
+        //this.setDefaultFacing(worldIn, pos, state);
     }
+    
+    @Override
+    public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState thisState)
+    {
+        //IBlockState thisState = worldIn.getBlockState(pos);
+        EnumFacing direction = thisState.getValue(FACING);
+        Vec3i dirVec = direction.getDirectionVec();
+        
+        worldIn.destroyBlock( new BlockPos(pos.getX() + dirVec.getX(), pos.getY() + dirVec.getY(), pos.getZ() + dirVec.getZ()), true );
+        worldIn.destroyBlock( new BlockPos(pos.getX() + dirVec.getX()*2, pos.getY() + dirVec.getY()*2, pos.getZ() + dirVec.getZ()*2 ), true );
+        this.dropBlockAsItem(worldIn, pos, thisState, 0);
+    }
+    
+    
+    @Override
+    public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn)
+    {
+        IBlockState thisState = worldIn.getBlockState(pos);
+        EnumFacing direction = thisState.getValue(FACING);
+        Vec3i dirVec = direction.getDirectionVec();
+        
+        worldIn.destroyBlock( new BlockPos(pos.getX() + dirVec.getX(), pos.getY() + dirVec.getY(), pos.getZ() + dirVec.getZ()), true );
+        worldIn.destroyBlock( new BlockPos(pos.getX() + dirVec.getX()*2, pos.getY() + dirVec.getY()*2, pos.getZ() + dirVec.getZ()*2 ), true );
+        this.dropBlockAsItem(worldIn, pos, thisState, 0);
+    }
+    
+    @Override
+    public boolean onBlockActivated(
+          World parWorld, 
+          BlockPos parBlockPos, 
+          IBlockState parIBlockState, 
+          EntityPlayer parPlayer, 
+          EnumFacing parSide, 
+          float hitX, 
+          float hitY, 
+          float hitZ)
+    {
+        if (!parWorld.isRemote)
+        {   
+            IBlockState thisState = parWorld.getBlockState(parBlockPos);
+            EnumFacing direction = thisState.getValue(FACING);
+            Vec3i dirVec = direction.getDirectionVec();
+            
+            parPlayer.openGui(Knolth.instance, Knolth.GUI_ENUM.MULTI.ordinal(), parWorld,
+            parBlockPos.getX() + dirVec.getX(), parBlockPos.getY() + dirVec.getY(), parBlockPos.getZ() + dirVec.getZ()); 
+        }
+        
+        return true;
+    }
+
 
     private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state)
     {
@@ -68,16 +125,19 @@ public class BlockOrientable extends Block
             worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
         }
     }
-
+    
     /**
      * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the
      * IBlockstate
      */
+    /*
+     * 
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
     }
-
+    
+     */
     /**
      * Called by ItemBlocks after a block is set in the world, to allow post-place logic
      */
@@ -99,7 +159,13 @@ public class BlockOrientable extends Block
     @SideOnly(Side.CLIENT)
     public Item getItem(World worldIn, BlockPos pos)
     {
-        return Item.getItemFromBlock(Blocks.furnace);
+        return Item.getItemFromBlock(KnolthBlocks.multi_block_part);
+    }
+    
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        return Item.getItemFromBlock(KnolthBlocks.multi_block_part);
     }
 
 	@Override

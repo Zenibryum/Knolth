@@ -1,6 +1,6 @@
 package com.zenibryum.knolth.blocks;
 
-import com.zenibryum.knolth.tileentity.TileEntityBattery;
+import com.zenibryum.knolth.tileentity.TileEntityLightbulb;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -8,11 +8,17 @@ import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockBattery extends Block implements ITileEntityProvider
+public class BlockLightbulb extends Block implements ITileEntityProvider
 {
-
-	public BlockBattery(Material materialIn) {
+	public boolean isOn;
+	public BlockLightbulb(Material materialIn, boolean on) {
 		super(materialIn);
+	    //this.setLightOpacity(255);
+		if ( on )
+			this.setLightLevel(1.0F);
+		else
+			this.setLightLevel(0.0F);
+		this.isOn = on;
 	}
 	
 	@Override
@@ -29,6 +35,6 @@ public class BlockBattery extends Block implements ITileEntityProvider
 	
 	@Override
 	public TileEntity createNewTileEntity(World world, int i) {
-		return new TileEntityBattery();
+		return new TileEntityLightbulb( );
 	}
 }

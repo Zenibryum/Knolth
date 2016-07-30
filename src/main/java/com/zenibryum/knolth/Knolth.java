@@ -6,15 +6,12 @@ import com.zenibryum.knolth.gui.manual.GuiManual;
 import com.zenibryum.knolth.init.KnolthBlocks;
 import com.zenibryum.knolth.init.KnolthItems;
 import com.zenibryum.knolth.proxy.CommonProxy;
-import com.zenibryum.knolth.tileentity.TileEntityCentrifuge;
-import com.zenibryum.knolth.tileentity.TileEntityElectricFurnace;
-import com.zenibryum.knolth.tileentity.TileEntityGrinder;
-import com.zenibryum.knolth.tileentity.TileEntityMulti;
-import com.zenibryum.knolth.tileentity.TileEntityVacuum;
 import com.zenibryum.knolth.tileentity.renderer.TileEntityRenderTube;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -32,13 +29,10 @@ public class Knolth {
     public static CommonProxy proxy;
     
     public static final KnolthTab tabKnolth = new KnolthTab("tabKnolth");
-    
 
     public enum GUI_ENUM {
     GRINDER, CENTRIFUGE, HEATER, VACUUM, ZIPPE, MANUAL, MULTI
     }
-
-
     
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -48,14 +42,6 @@ public class Knolth {
     	KnolthItems.init();
     	KnolthItems.register();
     	TileEntityRenderTube.init();
-
-    	GameRegistry.registerTileEntity(TileEntityGrinder.class, "tileEntityGrinder");
-    	GameRegistry.registerTileEntity(TileEntityCentrifuge.class, "tileEntityCentrifuge");
-    	GameRegistry.registerTileEntity(TileEntityVacuum.class, "tileEntityVacuum");
-    	GameRegistry.registerTileEntity(TileEntityElectricFurnace.class, "tileEntityElectricFurnace");
-    	GameRegistry.registerTileEntity(TileEntityMulti.class, "tileEntityMulti");
-
-    	
     }
     
     @Mod.EventHandler

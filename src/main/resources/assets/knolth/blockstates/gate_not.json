@@ -1,5 +1,8 @@
 {
     "variants": {
-        "normal": { "model": "knolth:gate_not" }
+        "facing=north": { "model": "knolth:gate_not" },
+        "facing=south": { "model": "knolth:gate_not", "y": 180 },
+        "facing=west":  { "model": "knolth:gate_not", "y": 270 },
+        "facing=east":  { "model": "knolth:gate_not", "y": 90 }
     }
 }

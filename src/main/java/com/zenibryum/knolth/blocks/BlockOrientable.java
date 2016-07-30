@@ -70,6 +70,14 @@ public class BlockOrientable extends Block
     }
 
     /**
+     * Returns a new instance of a block's tile entity class. Called on placing the block.
+     */
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
+        return new TileEntityFurnace();
+    }
+
+    /**
      * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the
      * IBlockstate
      */
@@ -122,7 +130,7 @@ public class BlockOrientable extends Block
     {
         return this.getDefaultState().withProperty(FACING, EnumFacing.SOUTH);
     }
-
+    
     /**
      * Convert the given metadata into a BlockState for this Block
      */
@@ -137,7 +145,7 @@ public class BlockOrientable extends Block
 
         return this.getDefaultState().withProperty(FACING, enumfacing);
     }
-
+    
     /**
      * Convert the BlockState into the correct metadata value
      */
@@ -145,7 +153,7 @@ public class BlockOrientable extends Block
     {
         return ((EnumFacing)state.getValue(FACING)).getIndex();
     }
-
+    
     protected BlockState createBlockState()
     {
         return new BlockState(this, new IProperty[] {FACING});

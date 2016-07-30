@@ -1,11 +1,25 @@
 {
-    "parent": "block/directional",
     "textures": {
-        "down": "knolth:blocks/gate_blank",
-	"up": "knolth:blocks/gate_and",
-	"north": "knolth:blocks/gate_out",
-	"south": "knolth:blocks/gate_blank",
-	"west": "knolth:blocks/gate_in",
-	"east": "knolth:blocks/gate_out"
-    }
+    "0": "knolth:blocks/gate_blank",
+    "1": "knolth:blocks/gate_and",
+    "2": "knolth:blocks/gate_out",
+    "3": "knolth:blocks/gate_blank",
+    "4": "knolth:blocks/gate_in",
+    "5": "knolth:blocks/gate_in"
+    },
+    "elements": [
+        {
+            "name": "Cube",
+            "from": [ 0.0, 0.0, 0.0 ], 
+            "to": [ 16.0, 16.0, 16.0 ], 
+            "faces": {
+                "north": { "texture": "#2", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "east": { "texture": "#5", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "south": { "texture": "#3", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "west": { "texture": "#4", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "up": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "down": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+            }
+        }
+    ]
 }

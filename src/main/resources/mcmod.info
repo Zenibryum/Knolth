@@ -1,8 +1,8 @@
 [
 {
   "modid": "knolth",
-  "name": "Zenibryum's Salt Mod",
-  "description": "This mod is intended to add new ores to Minecraft",
+  "name": "Knolth",
+  "description": "This is a teaching tool for physics and chemistry",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",

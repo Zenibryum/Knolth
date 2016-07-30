@@ -1,6 +1,7 @@
 package com.zenibryum.knolth.gui.manual;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.zenibryum.knolth.Configs;
 import com.zenibryum.knolth.Reference;
@@ -51,6 +52,12 @@ public class GuiManual extends GuiScreen{
 	
 	public static ResourceLocation lesson1;
 	
+	protected static ArrayList<GuiButton> updateList = new ArrayList<GuiButton>();
+	protected static int lastUpdateX = 0;
+	protected static int lastUpdateY = 0;
+	protected static int lastWidth = 0;
+	protected static int lastHeight = 0;
+	
 	public static void init() // This is used for loading textures
 	{
 		//Define manual texture and main menu overlay
@@ -62,16 +69,24 @@ public class GuiManual extends GuiScreen{
 		cao = new ResourceLocation(Reference.MOD_ID, "textures/gui/4.png");
 		
 		//Define buttons used for navigation below
-		home = new GuiButton(1, 163, 281, 60, 13, "Home"); // The home button
+		home = new GuiButton(1, 13, 241, 60, 13, "Home"); // The home button
 		
-		ph = new GuiButton(1, 353, 62, 60, 13, "1. Physics");
-		ch = new GuiButton(1, 353, 98, 70, 13, "2. Chemistry");
+		ph = new GuiButton(1, 203, 22, 60, 13, "1. Physics");
+		ch = new GuiButton(1, 203, 58, 70, 13, "2. Chemistry");
 		
-		pless = new GuiButton(1, 353, 134, 166, 13, "Physics Lessons");
-		papps = new GuiButton(1, 353, 147, 166, 13, "Physics Practical Applications");
+		pless = new GuiButton(1, 203, 94, 166, 13, "Physics Lessons");
+		papps = new GuiButton(1, 203, 107, 166, 13, "Physics Practical Applications");
 		
-		cless = new GuiButton(1, 353, 134, 166, 13, "Chemistry Lessons");
-		capps = new GuiButton(1, 353, 147, 166, 13, "Chemistry Practical Applications");
+		cless = new GuiButton(1, 203, 94, 166, 13, "Chemistry Lessons");
+		capps = new GuiButton(1, 203, 107, 166, 13, "Chemistry Practical Applications");
+		
+		updateList.add(home);
+		updateList.add(ph);
+		updateList.add(ch);
+		updateList.add(pless);
+		updateList.add(papps);
+		updateList.add(cless);
+		updateList.add(capps);
 		
 		//Import lessons and apps below
 		
@@ -141,30 +156,48 @@ public class GuiManual extends GuiScreen{
 		int yoffset = 0;
 		for ( int i = 0; i < pln; i++ )
 		{
-			plb[i] = new GuiButton(1, 366, 76+yoffset, 140, 13, plt[i] );
+			plb[i] = new GuiButton(1, 216, 36+yoffset, 140, 13, plt[i] );
+			updateList.add(plb[i]);
 			yoffset+=yincrement;
 		}
 		
 		yoffset = 0;
 		for ( int i = 0; i < pan; i++ )
 		{
-			pab[i] = new GuiButton(1, 366, 76+yoffset, 140, 13, pat[i] );
+			pab[i] = new GuiButton(1, 216, 36+yoffset, 140, 13, pat[i] );
+			updateList.add(pab[i]);
 			yoffset+=yincrement;
 		}
 		
 		yoffset = 0;
 		for ( int i = 0; i < cln; i++ )
 		{
-			clb[i] = new GuiButton(1, 366, 76+yoffset, 140, 13, clt[i] );
+			clb[i] = new GuiButton(1, 216, 36+yoffset, 140, 13, clt[i] );
+			updateList.add(clb[i]);
 			yoffset+=yincrement;
 		}
 		
 		yoffset = 0;
 		for ( int i = 0; i < can; i++ )
 		{
-			cab[i] = new GuiButton(1, 366, 76+yoffset, 140, 13, cat[i] );
+			cab[i] = new GuiButton(1, 216, 36+yoffset, 140, 13, cat[i] );
+			updateList.add(cab[i]);
 			yoffset+=yincrement;
 		}
+	}
+	
+	public void updateButtons ( int manualX, int manualY )
+	{
+		//System.out.println("buttonUpdate");
+		for ( GuiButton button : updateList )
+		{
+			button.xPosition = button.xPosition - lastUpdateX + manualX;
+			button.yPosition = button.yPosition - lastUpdateY + manualY;
+		}
+		
+		lastUpdateX = manualX;
+		lastUpdateY = manualY;
+		
 	}
 	
 	@Override
@@ -174,11 +207,26 @@ public class GuiManual extends GuiScreen{
 	    this.partialTicks = partialTicks;
 		this.drawDefaultBackground();
 		this.mc.getTextureManager().bindTexture(manual);
-		this.drawModalRectWithCustomSizedTexture(150, 40, 0, 0, 384, 266, 384, 266);
+		int x = (this.width - 384) / 2;
+		int y = (this.height- 266) / 2;
+		this.drawModalRectWithCustomSizedTexture(x, y, 0, 0, 384, 266, 384, 266);
 		drawOverlay();
 		//System.out.println("Manual");
-		super.drawScreen(mouseX, mouseY, partialTicks);
 		
+		/*
+		for ( GuiButton  button : this.buttonList )
+		{
+			button.updatePosition(x, y);
+		}
+		*/
+		
+		if ( this.width != lastWidth || this.height != lastHeight )
+			updateButtons ( x, y );
+		
+		lastWidth = this.width;
+		lastHeight= this.height;
+
+		super.drawScreen(mouseX, mouseY, partialTicks);
 		//System.out.println("Button list size :" + buttonList.size());
 	}
 	
@@ -189,6 +237,7 @@ public class GuiManual extends GuiScreen{
 	
 	
 	//plo, pao, clo, cao
+	
 	@Override
 	public void initGui() {
 		this.buttonList.clear();
@@ -339,13 +388,17 @@ public class GuiManual extends GuiScreen{
 		}
 	    
 	}
-	
 	public void drawOverlay() {
+		int x = (this.width - 384) / 2;
+		int y = (this.height- 266) / 2;
+		//		drawTexturedModalRect(x, y, u, v, width, height);
 		this.mc.getTextureManager().bindTexture(page);
-		this.drawModalRectWithCustomSizedTexture(150, 40, 0, 0, 384, 266, 384, 266); //403, 42
+		this.drawModalRectWithCustomSizedTexture(x, y, 0, 0, 384, 266, 384, 266); //403, 42
+		//150, 40
 	}
-	
+	/*
 	public void drawOptions() {
 
 	}
+	*/
 }

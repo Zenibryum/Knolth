@@ -1,27 +1,79 @@
 package com.zenibryum.knolth.blocks;
 
+import com.zenibryum.knolth.Knolth;
 import com.zenibryum.knolth.tileentity.TileEntityTube;
 
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.Vec3i;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
-public class BlockTube extends BlockContainer{
+public class BlockTube extends Block implements ITileEntityProvider{
 	public BlockTube() {
 		super(Material.rock);
 		this.useNeighborBrightness = true;
 	}
+	
+	
+	@Override
+    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+    {
+        //if (!worldIn.isRemote)
+        {
+			TileEntityTube t = (TileEntityTube) worldIn.getTileEntity( pos );
+			t.onTubeDestroyed();
+        }
+    }
 
+
+	
+    @Override
+    public void onBlockAdded(
+          World parWorld, 
+          BlockPos parBlockPos, 
+          IBlockState parIBlockState)
+    {
+        if (!parWorld.isRemote)
+        {
+			TileEntityTube t = (TileEntityTube) parWorld.getTileEntity( parBlockPos );
+			t.onTubeAdded();
+        }
+    }
+
+    @Override
+    public boolean onBlockActivated(
+          World parWorld, 
+          BlockPos parBlockPos, 
+          IBlockState parIBlockState, 
+          EntityPlayer parPlayer, 
+          EnumFacing parSide, 
+          float hitX, 
+          float hitY, 
+          float hitZ)
+    {
+        if (!parWorld.isRemote)
+        {
+			TileEntityTube t = (TileEntityTube) parWorld.getTileEntity( parBlockPos );
+			System.out.println("Measueres " + t.power );
+        }
+        
+        return true;
+    }
+    
+    
+	
+	
 	// UP=0, DOWN=1, NORTH=2, SOUTH=3, EAST=4, WEST=5
 	
 	/*
-	     DOWN(0, 1, -1, "down", EnumFacing.AxisDirection.NEGATIVE, EnumFacing.Axis.Y, new Vec3i(0, -1, 0)),
+	DOWN(0, 1, -1, "down", EnumFacing.AxisDirection.NEGATIVE, EnumFacing.Axis.Y, new Vec3i(0, -1, 0)),
     UP(1, 0, -1, "up", EnumFacing.AxisDirection.POSITIVE, EnumFacing.Axis.Y, new Vec3i(0, 1, 0)),
     NORTH(2, 3, 2, "north", EnumFacing.AxisDirection.NEGATIVE, EnumFacing.Axis.Z, new Vec3i(0, 0, -1)),
     SOUTH(3, 2, 0, "south", EnumFacing.AxisDirection.POSITIVE, EnumFacing.Axis.Z, new Vec3i(0, 0, 1)),

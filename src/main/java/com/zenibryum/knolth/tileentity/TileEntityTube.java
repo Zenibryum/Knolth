@@ -38,7 +38,7 @@ public class TileEntityTube extends TileEntity implements ITickable {
 	
 	public void propagatePowerOn(EnumFacing providerDirection)
 	{
-		System.out.println("Propagate ON");
+		//System.out.println("Propagate ON");
 		for ( EnumFacing currentDirection : EnumFacing.VALUES )
 		{
 			if ( currentDirection == providerDirection.getOpposite() ) // Don't propagate backwards

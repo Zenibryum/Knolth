@@ -64,7 +64,7 @@ public class BlockTube extends Block implements ITileEntityProvider{
 			System.out.println("Measueres " + t.power );
         }
         
-        return true;
+        return false;
     }
     
     
@@ -80,30 +80,41 @@ public class BlockTube extends Block implements ITileEntityProvider{
     WEST(4, 5, 1, "west", EnumFacing.AxisDirection.NEGATIVE, EnumFacing.Axis.X, new Vec3i(-1, 0, 0)),
     EAST(5, 4, 3, "east", EnumFacing.AxisDirection.POSITIVE, EnumFacing.Axis.X, new Vec3i(1, 0, 0));
     */
-	
+
 	@Override
     public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
     {
-		/*
-    	TileEntityTube tube = (TileEntityTube)worldIn.getTileEntity(pos);
-		float t = 11F/32F;
-		float xmax,ymax,zmax,xmin,ymin,zmin;
-		xmax=ymax=zmax=1-t;
-		xmin=ymin=zmin=t;
 		
 		
-		xmin -= tube.dirs[5]!=null?t:0;//west
-		xmax += tube.dirs[4]!=null?t:0;//east
+		if ( worldIn.getTileEntity(pos) instanceof TileEntityTube )
+		{
+	    	TileEntityTube tube = (TileEntityTube)worldIn.getTileEntity(pos);
+			float t = 11F/32F;
+			float xmax,ymax,zmax,xmin,ymin,zmin;
+			xmax=ymax=zmax=1-t;
+			xmin=ymin=zmin=t;
+			
+			
+			xmin -= tube.dirs[4]!=null?t:0;//west
+			xmax += tube.dirs[5]!=null?t:0;//east
+			
+			ymin -= tube.dirs[0]!=null?t:0;//down
+			ymax += tube.dirs[1]!=null?t:0;//up
+			
+			zmin -= tube.dirs[2]!=null?t:0;//north
+			zmax += tube.dirs[3]!=null?t:0;//south
+			
 		
-		ymin -= tube.dirs[1]!=null?t:0;//down
-		ymax += tube.dirs[0]!=null?t:0;//up
-		
-		zmin -= tube.dirs[2]!=null?t:0;//north
-		zmax += tube.dirs[3]!=null?t:0;//south
-		
-		
-		this.setBlockBounds(xmin,ymin,zmin,xmax,ymax,zmax);*/
-        return new AxisAlignedBB((double)pos.getX() + this.minX, (double)pos.getY() + this.minY, (double)pos.getZ() + this.minZ, (double)pos.getX() + this.maxX, (double)pos.getY() + this.maxY, (double)pos.getZ() + this.maxZ);
+			this.setBlockBounds(xmin,ymin,zmin,xmax,ymax,zmax);
+		}
+		///** All facings in D-U-N-S-W-E order */
+        return new AxisAlignedBB(
+        		(double)pos.getX() + this.minX,
+        		(double)pos.getY() + this.minY,
+        		(double)pos.getZ() + this.minZ,
+        		(double)pos.getX() + this.maxX,
+        		(double)pos.getY() + this.maxY,
+        		(double)pos.getZ() + this.maxZ);
     }
 	
 	@Override
@@ -116,11 +127,11 @@ public class BlockTube extends Block implements ITileEntityProvider{
 		xmin=ymin=zmin=t;
 		
 		
-		xmin -= tube.dirs[5]!=null?t:0;//west
-		xmax += tube.dirs[4]!=null?t:0;//east
+		xmin -= tube.dirs[4]!=null?t:0;//west
+		xmax += tube.dirs[5]!=null?t:0;//east
 		
-		ymin -= tube.dirs[1]!=null?t:0;//down
-		ymax += tube.dirs[0]!=null?t:0;//up
+		ymin -= tube.dirs[0]!=null?t:0;//down
+		ymax += tube.dirs[1]!=null?t:0;//up
 		
 		zmin -= tube.dirs[2]!=null?t:0;//north
 		zmax += tube.dirs[3]!=null?t:0;//south
@@ -142,6 +153,15 @@ public class BlockTube extends Block implements ITileEntityProvider{
 	public boolean renderAsNormalBlock() {
 		return false;
 	}
+	
+	
+	//This removes suffocation damage
+	@Override
+    public boolean isFullCube()
+    {
+        return false;
+    }
+
 	
 	public TileEntity createNewTileEntity(World world, int i) {
 		return new TileEntityTube();

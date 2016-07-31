@@ -70,20 +70,12 @@ public class BlockOrientable extends Block
     }
 
     /**
-     * Returns a new instance of a block's tile entity class. Called on placing the block.
-     */
-    public TileEntity createNewTileEntity(World worldIn, int meta)
-    {
-        return new TileEntityFurnace();
-    }
-
-    /**
      * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the
      * IBlockstate
      */
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing()); //.getOpposite()
     }
 
     /**
@@ -91,17 +83,7 @@ public class BlockOrientable extends Block
      */
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
-
-        if (stack.hasDisplayName())
-        {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
-
-            if (tileentity instanceof TileEntityFurnace)
-            {
-                ((TileEntityFurnace)tileentity).setCustomInventoryName(stack.getDisplayName());
-            }
-        }
+        worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()), 2); //.getOpposite()
     }
     
     @SideOnly(Side.CLIENT)

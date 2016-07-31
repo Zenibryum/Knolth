@@ -29,6 +29,7 @@ import com.zenibryum.knolth.tileentity.TileEntityBattery;
 import com.zenibryum.knolth.tileentity.TileEntityCentrifuge;
 import com.zenibryum.knolth.tileentity.TileEntityElectricFurnace;
 import com.zenibryum.knolth.tileentity.TileEntityGateAnd;
+import com.zenibryum.knolth.tileentity.TileEntityGateNot;
 import com.zenibryum.knolth.tileentity.TileEntityGrinder;
 import com.zenibryum.knolth.tileentity.TileEntityLightbulb;
 import com.zenibryum.knolth.tileentity.TileEntityMulti;
@@ -73,7 +74,7 @@ public class KnolthBlocks {
     public static Block multi_block_part = new BlockMultiPart().setUnlocalizedName("multiblockpart").setCreativeTab(Knolth.tabKnolth);
     public static Block multi_block_edge = new BlockMultiEdge().setUnlocalizedName("multiblockedge").setCreativeTab(Knolth.tabKnolth);
     public static Block lightbulb = new BlockLightbulb(Material.ice, false).setUnlocalizedName("lightbulb").setCreativeTab(Knolth.tabKnolth);
-    public static Block lightbulb_lit = new BlockLightbulb(Material.ice, true).setUnlocalizedName("lightbulb_lit").setCreativeTab(Knolth.tabKnolth);
+    public static Block lightbulb_lit = new BlockLightbulb(Material.ice, true).setUnlocalizedName("lightbulb_lit");//.setCreativeTab(Knolth.tabKnolth);
     //public static Block lightbulb = new BlockLight( false ).setUnlocalizedName("lightbulb").setCreativeTab(Knolth.tabKnolth);
     //public static Block lightbulb_lit = new BlockLight( true ).setUnlocalizedName("lightbulb_lit").setCreativeTab(Knolth.tabKnolth);
     
@@ -123,8 +124,9 @@ public class KnolthBlocks {
     	GameRegistry.registerTileEntity(TileEntityElectricFurnace.class, "tileEntityElectricFurnace");
     	GameRegistry.registerTileEntity(TileEntityMulti.class, "tileEntityMulti");
     	GameRegistry.registerTileEntity(TileEntityBattery.class, "tileEntityBattery");
-    	GameRegistry.registerTileEntity(TileEntityGateAnd.class, "tileEntityGate");
+    	GameRegistry.registerTileEntity(TileEntityGateAnd.class, "tileEntityGateAnd");
     	GameRegistry.registerTileEntity(TileEntityLightbulb.class, "tileEntityLightbulb");
+    	GameRegistry.registerTileEntity(TileEntityGateNot.class, "TileEntityGateNot");
     }
     
     public static void registerRenders() {

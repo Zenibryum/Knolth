@@ -19,7 +19,6 @@ import com.zenibryum.knolth.blocks.BlockLightbulb;
 import com.zenibryum.knolth.blocks.BlockMulti;
 import com.zenibryum.knolth.blocks.BlockMultiEdge;
 import com.zenibryum.knolth.blocks.BlockMultiPart;
-import com.zenibryum.knolth.blocks.BlockNormal;
 import com.zenibryum.knolth.blocks.BlockOrientable;
 import com.zenibryum.knolth.blocks.BlockTerminal;
 import com.zenibryum.knolth.blocks.BlockTiny;
@@ -31,6 +30,7 @@ import com.zenibryum.knolth.tileentity.TileEntityElectricFurnace;
 import com.zenibryum.knolth.tileentity.TileEntityGateAnd;
 import com.zenibryum.knolth.tileentity.TileEntityGateNot;
 import com.zenibryum.knolth.tileentity.TileEntityGateOr;
+import com.zenibryum.knolth.tileentity.TileEntityGateXor;
 import com.zenibryum.knolth.tileentity.TileEntityGrinder;
 import com.zenibryum.knolth.tileentity.TileEntityLightbulb;
 import com.zenibryum.knolth.tileentity.TileEntityMulti;
@@ -48,7 +48,7 @@ public class KnolthBlocks {
     //public static Block test_block;
     private static List<Block> knolthBlocks = new ArrayList<Block>();
     
-    private static String[] blockNames = {"workspace_part", "workspace_corner"};
+    //private static String[] blockNames = {"workspace_part", "workspace_corner"};
     private static String[] oreNames = { "copper_ore", "zinc_ore", "alluminium_ore", "platinum_ore" };
     //workspace_side
     
@@ -109,15 +109,17 @@ public class KnolthBlocks {
             knolthBlocks.add( new BlockKnolthOre().setUnlocalizedName(orename).setCreativeTab(Knolth.tabKnolth) );
         }
         
+        /*
         for (String blockname : blockNames) {   //for every Block block in knolthBlocks...
             knolthBlocks.add( new BlockNormal(Material.rock).setUnlocalizedName(blockname).setCreativeTab(Knolth.tabKnolth) );
-        }
+        }*/
     }
     
     public static void register() {
         for (Block block : knolthBlocks) {   //for every Block block in knolthBlocks...
             GameRegistry.registerBlock(block, block.getUnlocalizedName().substring(5)); // tile.workspace_part
         }
+        
         GameRegistry.registerTileEntity(TileEntityTube.class, "Tube");
         GameRegistry.registerTileEntity(TileEntityGrinder.class, "tileEntityGrinder");
     	GameRegistry.registerTileEntity(TileEntityCentrifuge.class, "tileEntityCentrifuge");
@@ -130,6 +132,7 @@ public class KnolthBlocks {
     	GameRegistry.registerTileEntity(TileEntityGateNot.class, "TileEntityGateNot");
     	GameRegistry.registerTileEntity(TileEntityGateAnd.class, "tileEntityGateAnd");
     	GameRegistry.registerTileEntity(TileEntityGateOr.class, "TileEntityGateOr");
+    	GameRegistry.registerTileEntity(TileEntityGateXor.class, "TileEntityGateXor");
     }
     
     public static void registerRenders() {

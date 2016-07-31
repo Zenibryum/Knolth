@@ -24,13 +24,14 @@ public class BlockLightbulb extends Block implements ITileEntityProvider
 	@Override
 	public boolean isOpaqueCube()
 	{
-		return true;
+		return false;
 	}
 	
+	//This removes suffocation damage
 	@Override
     public boolean isFullCube()
     {
-        return true;
+        return false;
     }
 	
 	@Override

@@ -1,10 +1,7 @@
 package com.zenibryum.knolth.tileentity;
 
 import com.zenibryum.knolth.blocks.BlockBattery;
-import com.zenibryum.knolth.blocks.BlockGateAnd;
-import com.zenibryum.knolth.blocks.BlockGateNot;
-import com.zenibryum.knolth.blocks.BlockGateOr;
-import com.zenibryum.knolth.blocks.BlockGateXor;
+import com.zenibryum.knolth.blocks.BlockLightbulb;
 import com.zenibryum.knolth.init.KnolthBlocks;
 
 import net.minecraft.block.Block;
@@ -434,8 +431,10 @@ public class TileEntityTube extends TileEntity implements ITickable {
 				dirs[ currentDirection.ordinal() ] = currentDirection;
 		}
 		
-		if(worldObj.getBlockState(pos.up()).getBlock() instanceof BlockBattery) dirs[0] = EnumFacing.UP;
-		if(worldObj.getBlockState(pos.down()).getBlock() instanceof BlockBattery) dirs[1] = EnumFacing.DOWN;
+		if(worldObj.getBlockState(pos.up()).getBlock() instanceof BlockBattery) dirs[1] = EnumFacing.UP;
+		if(worldObj.getBlockState(pos.down()).getBlock() instanceof BlockBattery) dirs[0] = EnumFacing.DOWN;
+		
+		if(worldObj.getBlockState(pos.up()).getBlock() instanceof BlockLightbulb) dirs[1] = EnumFacing.UP;
 		
 		///** All facings in D-U-N-S-W-E order */
 		

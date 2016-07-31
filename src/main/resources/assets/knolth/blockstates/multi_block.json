@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "knolth:multi_block" },
-        "facing=south": { "model": "knolth:multi_block", "y": 180 },
-        "facing=west":  { "model": "knolth:multi_block", "y": 270 },
-        "facing=east":  { "model": "knolth:multi_block", "y": 90 }
-    }
-}

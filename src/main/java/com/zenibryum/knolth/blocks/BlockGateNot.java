@@ -1,6 +1,7 @@
 package com.zenibryum.knolth.blocks;
 
 import com.zenibryum.knolth.tileentity.TileEntityGateNot;
+import com.zenibryum.knolth.tileentity.TileEntityTube;
 
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -34,7 +35,24 @@ public class BlockGateNot extends BlockOrientable implements ITileEntityProvider
 		return new TileEntityGateNot();
 	}
 	
+	@Override
+    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+    {
+        //if (!worldIn.isRemote)
+        {
+            EnumFacing facing = worldIn.getBlockState(pos).getValue(BlockGateNot.FACING);
+            
+            BlockPos outputPos = pos.add( facing.getDirectionVec() );
+        	
+        	if ( worldIn.getTileEntity( outputPos ) instanceof TileEntityTube ){
+				TileEntityTube t = (TileEntityTube) worldIn.getTileEntity( outputPos );
+				t.power = false;
+				t.propagatePowerOff( facing );
+        	}
+        }
+    }
 	
+	/*
 	//TODO : Remove this debug function :D
     @Override
     public boolean onBlockActivated(
@@ -52,5 +70,5 @@ public class BlockGateNot extends BlockOrientable implements ITileEntityProvider
         parWorld.setBlockState( parBlockPos.add( facing.getDirectionVec() ), Blocks.cobblestone.getDefaultState() );
         
         return false;
-    }
+    }*/
 }

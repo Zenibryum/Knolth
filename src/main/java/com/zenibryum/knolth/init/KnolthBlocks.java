@@ -30,6 +30,7 @@ import com.zenibryum.knolth.tileentity.TileEntityCentrifuge;
 import com.zenibryum.knolth.tileentity.TileEntityElectricFurnace;
 import com.zenibryum.knolth.tileentity.TileEntityGateAnd;
 import com.zenibryum.knolth.tileentity.TileEntityGateNot;
+import com.zenibryum.knolth.tileentity.TileEntityGateOr;
 import com.zenibryum.knolth.tileentity.TileEntityGrinder;
 import com.zenibryum.knolth.tileentity.TileEntityLightbulb;
 import com.zenibryum.knolth.tileentity.TileEntityMulti;
@@ -124,9 +125,11 @@ public class KnolthBlocks {
     	GameRegistry.registerTileEntity(TileEntityElectricFurnace.class, "tileEntityElectricFurnace");
     	GameRegistry.registerTileEntity(TileEntityMulti.class, "tileEntityMulti");
     	GameRegistry.registerTileEntity(TileEntityBattery.class, "tileEntityBattery");
-    	GameRegistry.registerTileEntity(TileEntityGateAnd.class, "tileEntityGateAnd");
     	GameRegistry.registerTileEntity(TileEntityLightbulb.class, "tileEntityLightbulb");
+    	
     	GameRegistry.registerTileEntity(TileEntityGateNot.class, "TileEntityGateNot");
+    	GameRegistry.registerTileEntity(TileEntityGateAnd.class, "tileEntityGateAnd");
+    	GameRegistry.registerTileEntity(TileEntityGateOr.class, "TileEntityGateOr");
     }
     
     public static void registerRenders() {
